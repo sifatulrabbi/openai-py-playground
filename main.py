@@ -1,13 +1,27 @@
-import openai
-import os
 from dotenv import load_dotenv
 
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY", None)
 
+import os
+import openai
 from agent.openai_functions_agent import agent_executor as fn_agent
 from agent.mem_agents import mem_completion_chain, mem_chat_chain
 from agent.qa_bot import qa_bot_with_chroma
+from agent.agent_001 import agent_executor
+
+openai.api_key = os.getenv("OPENAI_API_KEY", None)
+
+
+class Color:
+    RESET = "\033[0m"
+    BLACK = "\033[30m"
+    RED = "\033[31m"
+    GREEN = "\033[32m"
+    YELLOW = "\033[33m"
+    BLUE = "\033[34m"
+    MAGENTA = "\033[35m"
+    CYAN = "\033[36m"
+    WHITE = "\033[37m"
 
 
 def use_fn_agent():
@@ -40,4 +54,7 @@ def use_qa_chroma_bot():
 
 
 if __name__ == "__main__":
-    use_qa_chroma_bot()
+    while True:
+        msg = input(f"{Color.BLUE}User: {Color.BLUE}")
+        result = agent_executor.invoke({"input": msg})
+        print(f"{Color.BLUE}AI: {result.get('output')}{Color.BLUE}")

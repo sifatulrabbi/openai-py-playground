@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY", None)
 
-from bot import (
+from portfolio_bot import (
     MultiFunctionsXAgent,
     CustomXAgentPrompt,
     SemiPersistentChatMemory,

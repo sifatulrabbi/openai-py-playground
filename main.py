@@ -4,10 +4,10 @@ load_dotenv()
 
 import os
 import openai
-from agent.openai_functions_agent import agent_executor as fn_agent
-from agent.mem_agents import mem_completion_chain, mem_chat_chain
-from agent.qa_bot import qa_bot_with_chroma
-from agent.agent_001 import agent_executor
+from practice_agent.openai_functions_agent import agent_executor as fn_agent
+from practice_agent.mem_agents import mem_completion_chain, mem_chat_chain
+from practice_agent.qa_bot import qa_bot_with_chroma
+from practice_agent.agent_001 import agent_executor
 
 openai.api_key = os.getenv("OPENAI_API_KEY", None)
 

@@ -1,4 +1,6 @@
-.PHONY: run
-
 run:
-	python3 ./main.py
+	PY_ENV=production python3 run.py
+dev:
+	PY_ENV=development python3 run.py
+
+.PHONY: run

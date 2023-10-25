@@ -70,3 +70,6 @@ uvloop==0.17.0
 watchfiles==0.20.0
 websockets==11.0.3
 yarl==1.9.2
+httpx==0.25.0
+python-socketio==5.10.0
+icecream==2.1.3

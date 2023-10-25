@@ -85,13 +85,13 @@ agent = (
 memory = ConversationBufferMemory(memory_key=MEMORY_KEY)
 agent_executor = AgentExecutor(agent=agent, tools=tools, memory=memory, verbose=True)
 
-try:
-    while True:
-        msg = input("User: ")
-        print(memory.load_memory_variables({"input": msg}))
-        result = agent_executor.invoke({"input": msg})
-        print("Agent: ", result.get("output"))
-except KeyboardInterrupt as e:
-    chat_history = []
-    print("Gracefully shutting down the Agent.")
-    exit()
+if __name__ == "__main__":
+    try:
+        while True:
+            msg = input("User: ")
+            result = agent_executor.invoke({"input": msg})
+            print("Agent: ", result.get("output"))
+    except KeyboardInterrupt as e:
+        chat_history = []
+        print("Gracefully shutting down the Agent.")
+        exit()

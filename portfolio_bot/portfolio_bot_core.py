@@ -9,19 +9,17 @@ from langchain.agents.output_parsers import OpenAIFunctionsAgentOutputParser
 from typing import Dict
 
 from .tools import XAgentTools
-from .prompts import XAgentPrompt
-from .memory import XAgentMemory, string_to_chat_history_list
+from .prompts import BotPrompt
+from .memory import BotMemory, string_to_chat_history_list
 
 
-class MultiFunctionsXAgent:
+class MultiFunctionsBot:
     """This agent is for helping the users with their day to day business tasks.
 
     We will create a new instance of the agent every time a new user connects to the socket.io and will destroy it every time a user disconnects. This behavior is required because of the nature of our chat memory. The chat memory is semi-persistent means we don't store a lot info in the chat history to reduce the token usage.
     """
 
-    def __init__(
-        self, *, prompt: XAgentPrompt, tools: XAgentTools, memory: XAgentMemory
-    ):
+    def __init__(self, *, prompt: BotPrompt, tools: XAgentTools, memory: BotMemory):
         """Initialize the MultiFunctionsAgent with a socket.io server instance and current user's session id. Finalize the agent by calling the `prepare_agent()` method.
 
         Args:

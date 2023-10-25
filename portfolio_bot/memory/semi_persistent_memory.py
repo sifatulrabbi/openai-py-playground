@@ -1,9 +1,9 @@
 from langchain.memory import RedisChatMessageHistory, ConversationBufferMemory
 
-from .memory import XAgentMemory
+from .memory import BotMemory
 
 
-class SemiPersistentChatMemory(XAgentMemory):
+class SemiPersistentChatMemory(BotMemory):
     def __init__(self, *, user_id: str, memory_key: str):
         """Initialize the SemiPersistentChatMemory.
 

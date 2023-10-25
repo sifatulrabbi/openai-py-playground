@@ -12,8 +12,8 @@ load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY", None)
 
 from portfolio_bot import (
-    MultiFunctionsXAgent,
-    CustomXAgentPrompt,
+    MultiFunctionsBot,
+    CustomBotPrompt,
     SemiPersistentChatMemory,
     XAgentTools,
 )
@@ -24,7 +24,7 @@ test_org_id = "X-BookerTestOrg"
 
 if __name__ == "__main__":
     print("Hi, I'm X-Agent let me know how I can help you.")
-    prompt = CustomXAgentPrompt(
+    prompt = CustomBotPrompt(
         user_name="Sifatul",
         user_email="s.rabbi@milogistix.uk",
         user_role="admin",
@@ -35,7 +35,7 @@ if __name__ == "__main__":
         user_id=test_user_id, memory_key=prompt.MEMORY_KEY
     )
     tools = XAgentTools(user_id=test_user_id, org_id=test_org_id)
-    agent = MultiFunctionsXAgent(prompt=prompt, tools=tools, memory=memory)
+    agent = MultiFunctionsBot(prompt=prompt, tools=tools, memory=memory)
     try:
         while True:
             msg = input("User: ")

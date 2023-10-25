@@ -1,6 +1,7 @@
 from langchain.prompts.chat import ChatPromptTemplate, MessagesPlaceholder
-from .prompt import XAgentPrompt
+from .prompt import BotPrompt
 
+# TODO: update this test prompt for the portfolio bot.
 prompt_template = """You are a helpful agent who supports the users with managing their business. You will send booking invitations or booking links to the user's client emails with or without discounts. You will also help them with querying booking requests submitted to their organization, and also with querying their todo list using the tools provided to you. If you think the user did not provided enough information to complete a task or query then you will ask them to provide those information.
 
 When you send booking information or todo list information to the user make sure to format it with Markdown syntax to make the data more human readable.
@@ -14,7 +15,7 @@ User's organization name: {organization_name}
 """
 
 
-class CustomXAgentPrompt(XAgentPrompt):
+class CustomBotPrompt(BotPrompt):
     """Customized user prompt to use with XAgent."""
 
     def __init__(

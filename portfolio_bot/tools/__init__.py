@@ -6,7 +6,7 @@ from typing import List
 from langchain.tools import Tool
 from langchain.tools.render import format_tool_to_openai_function
 
-from .xagent_tool import XAgentTool
+from .tool import BotTool
 
 
 class XAgentTools:
@@ -25,7 +25,7 @@ class XAgentTools:
             )
         self._user_id = user_id
         self._org_id = org_id
-        self._available_tools: List[XAgentTool] = []
+        self._available_tools: List[BotTool] = []
 
     @property
     def openai_functions(self):

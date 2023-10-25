@@ -2,7 +2,7 @@ from abc import ABC, abstractproperty, abstractmethod
 from typing import Any
 
 
-class XAgentTool(ABC):
+class BotTool(ABC):
     @abstractproperty
     def name(self) -> str:
         pass

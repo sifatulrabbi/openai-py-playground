@@ -26,6 +26,12 @@ if __name__ == "__main__":
     )
     agent = MultiFunctionsBot(prompt=prompt, tools=tools, memory=memory)
     try:
+        # with open("tmp/question.txt", "r") as f:
+        #     question = f.read()
+        # reply = agent.invoke(
+        #     user_msg=f"Will sifatul be a good fit for our job?\n{question}"
+        # )
+        # print("Agent: ", reply)
         while True:
             msg = input("User: ")
             reply = agent.invoke(msg)

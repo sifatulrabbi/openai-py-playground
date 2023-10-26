@@ -40,18 +40,9 @@ PROJECTS
 - A notification system that notifies the admins when a new booking request is submitted and users when a booking request is accepted/rejected by admins. The email is also customizable by admins.
 - Admin panel to manage booking requests, add/remove/disable rooms, or update room information.
 SKILLS
-- Programming Languages: JavaScript, TypeScript, Python, Go.
-- Frameworks: Express.js, FastAPI, Gin, Flask, Socket.IO, Next.js, React.js, Vue.js, Sequelize, GORM, Redux, Mongoosejs, Langchain.
-- Databases: PostgreSQL, Redis, MongoDB.
-- Backend: WebSockets, gRPC, GraphQL, Node.js, REST, Microservices.
-- Frontend: HTML, TailwindCSS, SCSS, CSS.
-- DevOps: Nginx, Docker, GitHub Actions
+JavaScript, TypeScript, Python, Go, Express.js, FastAPI, Gin, Flask, Socket.IO, Next.js, React.js, Vue.js, Sequelize, GORM, Redux, Mongoosejs, Langchain, PostgreSQL, Redis, MongoDB, WebSockets, gRPC, GraphQL, Node.js, REST, Microservices, HTML, TailwindCSS, SCSS, CSS, Nginx, Docker, GitHub Actions.
 INTERESTS
-- Distributed Systems
-- Microservices
-- Design Patterns
-- Asynchronous and Concurrent programming
-- Problem-Solving
+Distributed Systems, Microservices, Design Patterns, Asynchronous and Concurrent programming, Problem-Solving.
 ---
 Sifatul Rabbi is currently open to offers to work on start-ups or established companies as a Full Stack Engineer and take all his skills and expertise to boost the company's productivity and success rate.
 ---

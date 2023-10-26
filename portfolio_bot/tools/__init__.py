@@ -3,29 +3,21 @@ All the tools for the Agent to perform different tasks based on the user's reque
 """
 
 from typing import List
-from langchain.tools import Tool
+from langchain.tools import Tool, BaseTool
 from langchain.tools.render import format_tool_to_openai_function
 
 from .tool import BotTool
+from .send_email import SendEmail
 
 
-class XAgentTools:
+class BotTools:
     """Agent tools orchestrator."""
 
-    def __init__(self, *, user_id: str, org_id: str):
-        """Initialize the Agent Tools.
-
-        Args:
-            user_id (str): The user's ID.
-            org_id (str): The user's organization ID.
-        """
-        if not user_id or not org_id:
-            raise ValueError(
-                "`user_id` and `org_id` is required to instantiate the tools"
-            )
-        self._user_id = user_id
-        self._org_id = org_id
-        self._available_tools: List[BotTool] = []
+    def __init__(self):
+        """Initialize the Agent Tools."""
+        self._available_tools: List[BotTool] = [
+            SendEmail(),
+        ]
 
     @property
     def openai_functions(self):
@@ -33,15 +25,17 @@ class XAgentTools:
         return functions
 
     @property
-    def tools_list(self) -> List[Tool]:
+    def tools_list(self) -> List[BaseTool]:
         """Get the available tools list.
 
         Returns:
-            List[Tool]: List of `langchain.tools.Tool`
+            List[Tool]: List of `langchain.tools.BaseTool`
         """
-        tools: List[Tool] = []
+        tools: List[BaseTool] = []
         for tool in self._available_tools:
             tools.append(
-                Tool(name=tool.name, description=tool.description, func=tool.tool_func)
+                Tool.from_function(
+                    func=tool.tool_func, name=tool.name, description=tool.description
+                )
             )
         return tools

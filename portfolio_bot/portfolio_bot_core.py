@@ -2,24 +2,34 @@
 The core logic of X-Agent 001.
 """
 import os
+from abc import ABC, abstractmethod, abstractproperty
 from langchain.agents import AgentExecutor
 from langchain.chat_models import ChatOpenAI
-from langchain.agents.format_scratchpad import format_to_openai_functions
 from langchain.agents.output_parsers import OpenAIFunctionsAgentOutputParser
 from typing import Dict
 
-from .tools import XAgentTools
+from .tools import BotTools
 from .prompts import BotPrompt
-from .memory import BotMemory, string_to_chat_history_list
+from .memory import BotMemory
 
 
-class MultiFunctionsBot:
+class PortfolioBot(ABC):
+    @abstractproperty
+    def executor(self) -> AgentExecutor:
+        pass
+
+    @abstractmethod
+    def invoke(self, user_msg: str) -> str:
+        pass
+
+
+class MultiFunctionsBot(PortfolioBot):
     """This agent is for helping the users with their day to day business tasks.
 
     We will create a new instance of the agent every time a new user connects to the socket.io and will destroy it every time a user disconnects. This behavior is required because of the nature of our chat memory. The chat memory is semi-persistent means we don't store a lot info in the chat history to reduce the token usage.
     """
 
-    def __init__(self, *, prompt: BotPrompt, tools: XAgentTools, memory: BotMemory):
+    def __init__(self, *, prompt: BotPrompt, tools: BotTools, memory: BotMemory):
         """Initialize the MultiFunctionsAgent with a socket.io server instance and current user's session id. Finalize the agent by calling the `prepare_agent()` method.
 
         Args:
@@ -35,15 +45,7 @@ class MultiFunctionsBot:
         self._llm = ChatOpenAI(temperature=0, model="gpt-3.5-turbo")
         self._llm = self._llm.bind(functions=self._tools.openai_functions)
         self._agent = (
-            {
-                "input": lambda x: x.get("input"),
-                "chat_history": lambda x: string_to_chat_history_list(
-                    x.get("chat_history")
-                ),
-                "agent_scratchpad": lambda x: format_to_openai_functions(
-                    intermediate_steps=x.get("intermediate_steps")
-                ),
-            }
+            self._prompt.initial_steps
             | self._prompt.chat_prompt
             | self._llm
             | OpenAIFunctionsAgentOutputParser()

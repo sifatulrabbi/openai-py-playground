@@ -2,8 +2,9 @@
 
 Testing out OpenAI and Langchain features with Python
 
-# Agent Prototype 001
+# PA (personal assistant) Bot
 
-- Is able answer to human messages like a human.
-- When asked is able to send booking links to their clients.
-- If the provided information is not enough then is able to request information form the user.
+- Answers questions related to the person.
+- Can describe where the person excels at (for employers).
+- Can send personalized emails on behalf of the site visitor to the person.
+- Describe different personal projects of the person in details and also provide the links.

@@ -4,19 +4,14 @@ This file is not a part of the project.
 This file is only used when testing out the simple-agent.
 """
 
-import openai
-import os
-from dotenv import load_dotenv
+from configs import AppConfig
 from icecream import ic
-
-load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY", None)
-
 from portfolio_bot import MultiFunctionsBot
 from portfolio_bot.prompts import CustomBotPrompt
 from portfolio_bot.tools import BotTools
 from portfolio_bot.memory import SemiPersistentChatMemory
 
+AppConfig.prepare()
 
 if __name__ == "__main__":
     print("Hi, I'm X-Agent let me know how I can help you.")
@@ -38,5 +33,7 @@ if __name__ == "__main__":
             reply = agent.invoke(msg)
             print("Agent: ", reply)
     except KeyboardInterrupt as e:
+        exit()
+    except Exception as e:
         ic(e)
         exit()

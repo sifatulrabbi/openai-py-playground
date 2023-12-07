@@ -35,7 +35,9 @@ class BotTools:
         for tool in self._available_tools:
             tools.append(
                 Tool.from_function(
-                    func=tool.tool_func, name=tool.name, description=tool.description
+                    func=tool.tool_func,
+                    name=tool.name,
+                    description=tool.description,
                 )
             )
         return tools
